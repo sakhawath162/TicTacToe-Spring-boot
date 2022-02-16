@@ -15,16 +15,16 @@ public class GameResultCalculationService {
 		String winnerByLeftDiagonal = "";
 		String winnerByRightDiagonal = "";
 		List<String> winningMoves = new ArrayList<>();
-		
+
 		winnerByRow = gameService.winnerOfTheGameByRow(moves,n);
-		
+
 		if(winnerByRow != null) {
 			winningMoves.add(winnerByRow);
 		}
 		
 		winnerByColumn = gameService.winnerOfTheGameByColumn(moves,n);
-		
-		if(!winningMoves.isEmpty() && winnerByColumn != null) {
+				
+		if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
 			return "Duplicate";
 		}
 		
@@ -34,7 +34,7 @@ public class GameResultCalculationService {
 		
 		winnerByLeftDiagonal = gameService.winnerOfTheGameByLeftDiagonal(moves,n);
 		
-		if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null) {
+		if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
 			return "Duplicate";
 		}
 		
@@ -44,7 +44,7 @@ public class GameResultCalculationService {
 		
 		winnerByRightDiagonal = gameService.winnerOfTheGameByRightDiagonal(moves,n);
 		
-		if(!winningMoves.isEmpty() && winnerByRightDiagonal != null) {
+		if(!winningMoves.isEmpty() && winnerByRightDiagonal != null && !winningMoves.contains(winnerByRightDiagonal)) {
 			return "Duplicate";
 		}
 		
@@ -55,8 +55,6 @@ public class GameResultCalculationService {
 		if(winningMoves.isEmpty()) {
 			return null;
 		}
-		int result =  winningMoves.indexOf("CIRCLE");
-		System.out.println(result);
-		return  null;
+		return winningMoves.toArray()[0].toString();
 	}
 }

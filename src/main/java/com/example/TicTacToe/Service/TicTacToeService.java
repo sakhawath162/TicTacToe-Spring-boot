@@ -14,6 +14,7 @@ public class TicTacToeService implements TicTacToeInterface{
 	public String winnerOfTheGameByRow(String[][]moves,int n) {
 	
 		List<String> item = new ArrayList<>();
+		List<String> storedItem = new ArrayList<>();
 
         for(int i=0; i<n; i++){
             item.clear();
@@ -26,7 +27,7 @@ public class TicTacToeService implements TicTacToeInterface{
                 }else if(item.contains(null)){
                     continue;
                 }else{
-                    return moves[i][0];
+                	storedItem.add(item.get(0));
                 }
             }else if(item.contains("CIRCLE")){
                 if(item.contains("CROSS")){
@@ -34,20 +35,25 @@ public class TicTacToeService implements TicTacToeInterface{
                 }else if(item.contains(null)){
                     continue;
                 }else{
-                    return moves[i][0];
+                	storedItem.add(item.get(0));
                 }
             }
         }
         
-        return null;
+    	if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+			return null;
+		}
+    	if(storedItem.isEmpty()) {
+    		return null;
+    	}
+	    return storedItem.toArray()[0].toString();
 
 	}
 
 	@Override
 	public String winnerOfTheGameByColumn(String[][] moves, int n) {
-		
 		List<String> item = new ArrayList<>();
-
+		List<String> storedItem = new ArrayList<>();
 			for(int i=0; i<n; i++){
         	
             item.clear();
@@ -62,7 +68,7 @@ public class TicTacToeService implements TicTacToeInterface{
                 }else if(item.contains(null)){
                     continue;
                 }else{
-                    return moves[0][i];
+                	storedItem.add(item.get(0));
                 }
             }else if(item.contains("CIRCLE")){
                 if(item.contains("CROSS")){
@@ -70,17 +76,25 @@ public class TicTacToeService implements TicTacToeInterface{
                 }else if(item.contains(null)){
                     continue;
                 }else{
-                    return moves[0][i];
+                	storedItem.add(item.get(0));
                 }
             }
         }
-	     return null;
+			
+		if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+			return null;
+		}
+		if(storedItem.isEmpty()) {
+    		return null;
+    	}
+	     return storedItem.toArray()[0].toString();
 	}
 
 	@Override
 	public String winnerOfTheGameByLeftDiagonal(String[][] moves, int n) {
 		
 		List<String> item = new ArrayList<>();
+		List<String> storedItem = new ArrayList<>();
 
 		 for(int i = 0; i<n ; i++){
 	            item.add(moves[i][i]);
@@ -88,21 +102,28 @@ public class TicTacToeService implements TicTacToeInterface{
 	        if(!item.contains("CROSS")){
 	            if(item.contains("CIRCLE")){
 	                if(!item.contains(null)){
-	                    return moves[0][0];
+	                	storedItem.add(item.get(0));
 	                }
 	            }
 	        }else if(!item.contains("CIRCLE")){
 	            if(!item.contains(null)){
-	                return moves[0][0];
+                	storedItem.add(item.get(0));
 	            }
 	        }
-	        	        
-	        return null;
+	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+				return null;
+			}
+	        if(storedItem.isEmpty()) {
+	    		return null;
+	    	}
+		    return storedItem.toArray()[0].toString();
 	}
 
 	@Override
 	public String winnerOfTheGameByRightDiagonal(String[][] moves, int n) {
 		List<String> item = new ArrayList<>();
+		List<String> storedItem = new ArrayList<>();
+
 
 		 for (int i = 0; i<n; i++){
 	            item.add(moves[i][n-i-1]);
@@ -110,15 +131,21 @@ public class TicTacToeService implements TicTacToeInterface{
 	        if(!item.contains("CROSS")){
 	            if(item.contains("CIRCLE")){
 	                if(!item.contains(null)){
-	                    return moves[0][n-1];
+	                	storedItem.add(item.get(0));
 	                }
 	            }
 	        }else if(!item.contains("CIRCLE")){
 	            if(!item.contains(null)){
-	                return moves[0][n-1];
+                	storedItem.add(item.get(0));
 	            }
 	        }		
-	        return null;
+	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+				return null;
+			}
+	        if(storedItem.isEmpty()) {
+	    		return null;
+	    	}
+		    return storedItem.toArray()[0].toString();
 	}
 	
 }

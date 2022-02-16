@@ -27,7 +27,6 @@ public class TicTacToeController {
 	public ResponseEntity<String> resultOfTheGame(@RequestBody Game game){
 		int n = game.getSquareSize();
 		String result = "";
-		List<String> winningMoves = new ArrayList<>();
 		
 		try {
 			
@@ -43,7 +42,7 @@ public class TicTacToeController {
 				return new ResponseEntity<>("Duplicate winners!", HttpStatus.EXPECTATION_FAILED);
 			}
 			
-			return new ResponseEntity<>(winningMoves.get(0) + " wins!", HttpStatus.OK);
+			return new ResponseEntity<>(result + " wins!", HttpStatus.OK);
 			
 		}catch(Exception e) {
 			LOGGER.error("Exception Thrown {}", e.getLocalizedMessage());
