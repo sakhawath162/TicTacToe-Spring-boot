@@ -25,7 +25,7 @@ public class TicTacToeController {
 	public ResponseEntity<String> resultOfTheGame(@RequestBody Game game){
 		int n = game.getSquareSize();
 		String result = "";
-		int count = game.getLength(game.getMoves());
+		int commands = game.getNumberOfCommands(game.getMoves());
 		
 		try {
 			
@@ -35,6 +35,13 @@ public class TicTacToeController {
 			
 			result = resultService.resultOfTheGame(game.getMoves(), n);
 			
+			if(commands<(n+n-1)) {
+				return new ResponseEntity<>("Match in progress",HttpStatus.OK);
+			}else if(commands >= n+n-1 && commands < n*n) {
+				if(result == null) {
+					return new ResponseEntity<>("Match in progress", HttpStatus.OK);
+				}
+			}
 			
 			if(result == null) {
 				return new ResponseEntity<>("Draw", HttpStatus.OK);

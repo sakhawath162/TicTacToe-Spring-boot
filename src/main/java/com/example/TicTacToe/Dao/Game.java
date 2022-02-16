@@ -21,7 +21,7 @@ public class Game {
 		this.moves = moves;
 	}
 	
-	public int getLength(String[][]moves) {
+	public int getNumberOfCommands(String[][]moves) {
 		int count = 0;
 		for(int i=0;i<moves.length;i++) {
 			for(int j=0;j<moves.length;j++) {

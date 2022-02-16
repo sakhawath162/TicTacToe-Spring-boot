@@ -19,9 +19,11 @@ public class TicTacToeService implements TicTacToeInterface{
 		try {
 			for(int i=0; i<n; i++){
 	            item.clear();
+	            
 	            for(int j=0;j<n;j++){
 	                item.add(moves[i][j]);
 	                }
+	            
 	            if(item.contains("CROSS")){
 	                if(item.contains("CIRCLE")){
 	                    continue;
@@ -48,6 +50,7 @@ public class TicTacToeService implements TicTacToeInterface{
 	    		return null;
 	    	}
 		    return storedItem.toArray()[0].toString();
+		    
 		}catch(Exception e) {
 			throw e;
 		}
@@ -61,8 +64,8 @@ public class TicTacToeService implements TicTacToeInterface{
 		List<String> storedItem = new ArrayList<>();
 		
 		try {
+			
 			for(int i=0; i<n; i++){
-	        	
 	            item.clear();
 	            
 	            for(int j=0;j<n;j++){
@@ -91,10 +94,13 @@ public class TicTacToeService implements TicTacToeInterface{
 			if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
 				return null;
 			}
+			
 			if(storedItem.isEmpty()) {
 	    		return null;
 	    	}
-		     return storedItem.toArray()[0].toString();
+			
+		    return storedItem.toArray()[0].toString();
+		     
 		}catch(Exception e) {
 			throw e;
 		}
@@ -111,6 +117,7 @@ public class TicTacToeService implements TicTacToeInterface{
 			for(int i = 0; i<n ; i++){
 	            item.add(moves[i][i]);
 	        }
+			
 	        if(!item.contains("CROSS")){
 	            if(item.contains("CIRCLE")){
 	                if(!item.contains(null)){
@@ -122,13 +129,17 @@ public class TicTacToeService implements TicTacToeInterface{
                 	storedItem.add(item.get(0));
 	            }
 	        }
+	        
 	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
 				return null;
 			}
+	        
 	        if(storedItem.isEmpty()) {
 	    		return null;
 	    	}
+	        
 		    return storedItem.toArray()[0].toString();
+		    
 		}catch(Exception e) {
 			throw e;
 		}
@@ -144,6 +155,7 @@ public class TicTacToeService implements TicTacToeInterface{
 			for (int i = 0; i<n; i++){
 	            item.add(moves[i][n-i-1]);
 	        }
+			
 	        if(!item.contains("CROSS")){
 	            if(item.contains("CIRCLE")){
 	                if(!item.contains(null)){
@@ -154,14 +166,18 @@ public class TicTacToeService implements TicTacToeInterface{
 	            if(!item.contains(null)){
                 	storedItem.add(item.get(0));
 	            }
-	        }		
+	        }
+	        
 	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
 				return null;
 			}
+	        
 	        if(storedItem.isEmpty()) {
 	    		return null;
 	    	}
+	        
 		    return storedItem.toArray()[0].toString();
+		    
 		}catch(Exception e) {
 			throw e;
 		}
