@@ -9,52 +9,56 @@ public class GameResultCalculationService {
 	@Autowired
 	TicTacToeService gameService;
 
-	public String resultOfTheGame(String[][]moves,int n) {
+	public String resultOfTheGame(String[][]moves,int n) throws Exception{
 		String winnerByRow = "";
 		String winnerByColumn = "";
 		String winnerByLeftDiagonal = "";
 		String winnerByRightDiagonal = "";
 		List<String> winningMoves = new ArrayList<>();
+		
+		try {
+			winnerByRow = gameService.winnerOfTheGameByRow(moves,n);
 
-		winnerByRow = gameService.winnerOfTheGameByRow(moves,n);
+			if(winnerByRow != null) {
+				winningMoves.add(winnerByRow);
+			}
+			
+			winnerByColumn = gameService.winnerOfTheGameByColumn(moves,n);
+					
+			if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
+				return "Duplicate";
+			}
+			
+			if(winnerByColumn != null) {
+				winningMoves.add(winnerByColumn);
+			}
+			
+			winnerByLeftDiagonal = gameService.winnerOfTheGameByLeftDiagonal(moves,n);
+			
+			if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
+				return "Duplicate";
+			}
+			
+			if(winnerByLeftDiagonal != null) {
+				winningMoves.add(winnerByLeftDiagonal);
+			}
+			
+			winnerByRightDiagonal = gameService.winnerOfTheGameByRightDiagonal(moves,n);
+			
+			if(!winningMoves.isEmpty() && winnerByRightDiagonal != null && !winningMoves.contains(winnerByRightDiagonal)) {
+				return "Duplicate";
+			}
+			
+			if(winnerByRightDiagonal != null) {
+				winningMoves.add(winnerByRightDiagonal);
+			}
 
-		if(winnerByRow != null) {
-			winningMoves.add(winnerByRow);
+			if(winningMoves.isEmpty()) {
+				return null;
+			}
+			return winningMoves.toArray()[0].toString();
+		}catch(Exception e) {
+			throw e;
 		}
-		
-		winnerByColumn = gameService.winnerOfTheGameByColumn(moves,n);
-				
-		if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
-			return "Duplicate";
-		}
-		
-		if(winnerByColumn != null) {
-			winningMoves.add(winnerByColumn);
-		}
-		
-		winnerByLeftDiagonal = gameService.winnerOfTheGameByLeftDiagonal(moves,n);
-		
-		if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
-			return "Duplicate";
-		}
-		
-		if(winnerByLeftDiagonal != null) {
-			winningMoves.add(winnerByLeftDiagonal);
-		}
-		
-		winnerByRightDiagonal = gameService.winnerOfTheGameByRightDiagonal(moves,n);
-		
-		if(!winningMoves.isEmpty() && winnerByRightDiagonal != null && !winningMoves.contains(winnerByRightDiagonal)) {
-			return "Duplicate";
-		}
-		
-		if(winnerByRightDiagonal != null) {
-			winningMoves.add(winnerByRightDiagonal);
-		}
-
-		if(winningMoves.isEmpty()) {
-			return null;
-		}
-		return winningMoves.toArray()[0].toString();
 	}
 }

@@ -1,6 +1,4 @@
 package com.example.TicTacToe.Controller;
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +25,16 @@ public class TicTacToeController {
 	public ResponseEntity<String> resultOfTheGame(@RequestBody Game game){
 		int n = game.getSquareSize();
 		String result = "";
+		int count = game.getLength(game.getMoves());
 		
 		try {
 			
 			if(n == 0) {
-				
-			}else {
-				result = resultService.resultOfTheGame(game.getMoves(), n);
+				n = 3;
 			}
+			
+			result = resultService.resultOfTheGame(game.getMoves(), n);
+			
 			
 			if(result == null) {
 				return new ResponseEntity<>("Draw", HttpStatus.OK);
