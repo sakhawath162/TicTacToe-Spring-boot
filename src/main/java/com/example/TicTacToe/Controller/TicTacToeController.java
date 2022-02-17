@@ -23,7 +23,7 @@ public class TicTacToeController {
 	
 	@PostMapping("/gameWinner")
 	public ResponseEntity<String> resultOfTheGame(@RequestBody Game game){
-		int n = game.getSquareSize();
+		int n = game.getSize();
 		String result = "";
 		int commands = game.getNumberOfCommands(game.getMoves());
 		

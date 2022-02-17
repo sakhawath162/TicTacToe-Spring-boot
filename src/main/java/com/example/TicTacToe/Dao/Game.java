@@ -2,15 +2,15 @@ package com.example.TicTacToe.Dao;
 
 public class Game {
 	
-	private int squareSize;
+	private int size;
 	private String[][] moves;
 
-	public int getSquareSize() {
-		return squareSize;
+	public int getSize() {
+		return size;
 	}
 
-	public void setSquareSize(int squareSize) {
-		this.squareSize = squareSize;
+	public void setSquareSize(int size) {
+		this.size = size;
 	}
 
 	public String[][] getMoves() {
