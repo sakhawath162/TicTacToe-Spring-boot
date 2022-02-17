@@ -1,21 +1,21 @@
 package com.example.TicTacToe.Service;
-
 import java.util.ArrayList;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import com.example.TicTacToe.Interface.TicTacToeInterface;
 
 @Service
 public class TicTacToeService implements TicTacToeInterface{
+	private static final Logger LOGGER = LoggerFactory.getLogger(TicTacToeService.class);
 
 	@Override
 	public String winnerOfTheGameByRow(String[][]moves,int n) throws Exception {
 	
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
-
+		LOGGER.info("Checking winner by row");
 		try {
 			for(int i=0; i<n; i++){
 	            item.clear();
@@ -52,6 +52,8 @@ public class TicTacToeService implements TicTacToeInterface{
 		    return storedItem.toArray()[0].toString();
 		    
 		}catch(Exception e) {
+			LOGGER.error("Exception thrown {}", e);
+
 			throw e;
 		}
 
@@ -62,7 +64,8 @@ public class TicTacToeService implements TicTacToeInterface{
 	public String winnerOfTheGameByColumn(String[][] moves, int n) throws Exception {
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
-		
+		LOGGER.info("Checking winner by column");
+
 		try {
 			
 			for(int i=0; i<n; i++){
@@ -102,6 +105,8 @@ public class TicTacToeService implements TicTacToeInterface{
 		    return storedItem.toArray()[0].toString();
 		     
 		}catch(Exception e) {
+			LOGGER.error("Exception thrown {}", e);
+
 			throw e;
 		}
 			
@@ -112,6 +117,8 @@ public class TicTacToeService implements TicTacToeInterface{
 		
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
+
+		LOGGER.info("Checking winner by left diagonal");
 
 		try {
 			for(int i = 0; i<n ; i++){
@@ -141,6 +148,8 @@ public class TicTacToeService implements TicTacToeInterface{
 		    return storedItem.toArray()[0].toString();
 		    
 		}catch(Exception e) {
+			LOGGER.error("Exception thrown {}", e);
+
 			throw e;
 		}
 		 
@@ -150,6 +159,8 @@ public class TicTacToeService implements TicTacToeInterface{
 	public String winnerOfTheGameByRightDiagonal(String[][] moves, int n) throws Exception {
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
+
+		LOGGER.info("Checking winner by Right diagonal");
 
 		try {
 			for (int i = 0; i<n; i++){
@@ -179,6 +190,8 @@ public class TicTacToeService implements TicTacToeInterface{
 		    return storedItem.toArray()[0].toString();
 		    
 		}catch(Exception e) {
+			LOGGER.error("Exception thrown {}", e);
+
 			throw e;
 		}
 	}

@@ -42,6 +42,7 @@ public class TicTacToeController {
 					return new ResponseEntity<>("Match in progress", HttpStatus.OK);
 				}
 			}
+			LOGGER.info("Result found {}", result);
 			
 			if(result == null) {
 				return new ResponseEntity<>("Draw", HttpStatus.OK);
