@@ -11,12 +11,14 @@
 	
 #Body:
 
-{
-    "size" : 3,
-    "moves": [["CIRCLE",null,"CIRCLE"],
-              [null,"CROSS","CROSS"],
-              ["CROSS",null,null]]
-}
+```javascript
+	{
+	    "size" : 3,
+	    "moves": [["CIRCLE",null,"CIRCLE"],
+	              [null,"CROSS","CROSS"],
+	              ["CROSS",null,null]]
+	}
+```
 
 #Responses: 
 	
