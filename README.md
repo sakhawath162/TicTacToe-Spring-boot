@@ -1,7 +1,8 @@
 # TicTakToe-Spring-boot
 
 **API:** 
-	*POST/gameWinner
+
+	* POST/gameWinner
 	* calculates the 2D array sent from the front end to the API body and finds the match result. 
 	
 **Endpoints:**
