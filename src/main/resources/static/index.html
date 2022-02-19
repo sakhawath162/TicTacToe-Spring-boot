@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic tac toe</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td{
+            width: 30px;
+            height: 30px;
+        }
+
+        .btn{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .main{
+            width: 50%;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+
+        <input type="number" name="grid_size" id="grid_size" placeholder="Enter grid size">
+        <input type="button" class="btn" value="Save" id="grid_size_btn">
+
+        <br><br>
+        <p id="message"></p>
+        <br><br>
+        <div id="table_div" >
+
+        </div>
+
+        <br><br>
+        <button onclick="submitToServer()">Submit</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -4,15 +4,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.TicTacToe.Dao.Game;
+import com.example.TicTacToe.Dao.GameResult;
 import com.example.TicTacToe.Service.GameResultCalculationService;
 import com.example.TicTacToe.Service.TicTacToeService;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/ticTacToe")
 public class TicTacToeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TicTacToeController.class);
@@ -22,7 +25,8 @@ public class TicTacToeController {
 	GameResultCalculationService resultService;
 	
 	@PostMapping("/gameWinner")
-	public ResponseEntity<String> resultOfTheGame(@RequestBody Game game){
+	public ResponseEntity<GameResult> resultOfTheGame(@RequestBody Game game){
+		GameResult matchResult = new GameResult();
 		int n = game.getSize();
 		String result = "";
 		int commands = game.getNumberOfCommands(game.getMoves());
@@ -36,25 +40,30 @@ public class TicTacToeController {
 			result = resultService.resultOfTheGame(game.getMoves(), n);
 			
 			if(commands<(n+n-1)) {
-				return new ResponseEntity<>("Match in progress",HttpStatus.OK);
+				matchResult.setMessage("Match in progress");
+				return new ResponseEntity<>(matchResult,HttpStatus.OK);
 			}else if(commands >= n+n-1 && commands < n*n) {
 				if(result == null) {
-					return new ResponseEntity<>("Match in progress", HttpStatus.OK);
+					matchResult.setMessage("Match in progress");
+					return new ResponseEntity<>(matchResult, HttpStatus.OK);
 				}
 			}
 			LOGGER.info("Result found {}", result);
 			
 			if(result == null) {
-				return new ResponseEntity<>("Draw", HttpStatus.OK);
+				matchResult.setMessage("Draw");
+				return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			}else if(result.equals("Duplicate")) {
-				return new ResponseEntity<>("Duplicate winners!", HttpStatus.EXPECTATION_FAILED);
+				matchResult.setMessage("Duplicate winners!");
+				return new ResponseEntity<>(matchResult, HttpStatus.EXPECTATION_FAILED);
 			}
-			
-			return new ResponseEntity<>(result + " wins!", HttpStatus.OK);
+			matchResult.setMessage(result + " wins!");
+			return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			
 		}catch(Exception e) {
 			LOGGER.error("Exception Thrown {}", e.getLocalizedMessage());
-			return new ResponseEntity<>(e.getLocalizedMessage(),HttpStatus.EXPECTATION_FAILED);
+			matchResult.setMessage(e.getLocalizedMessage());
+			return new ResponseEntity<>(matchResult,HttpStatus.EXPECTATION_FAILED);
 		}
 		
 	}
