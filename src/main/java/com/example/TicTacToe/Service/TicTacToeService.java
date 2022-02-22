@@ -15,33 +15,36 @@ public class TicTacToeService implements TicTacToeInterface{
 	
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
+		int count = 0;
+		
 		LOGGER.info("Checking winner by row");
+		
 		try {
 			for(int i=0; i<n; i++){
 	            item.clear();
 	            
-	            for(int j=0;j<n;j++){
-	                item.add(moves[i][j]);
-	                }
-	            
-	            if(item.contains("CROSS")){
-	                if(item.contains("CIRCLE")){
-	                    continue;
-	                }else if(item.contains(null)){
-	                    continue;
-	                }else{
-	                	storedItem.add(item.get(0));
-	                }
-	            }else if(item.contains("CIRCLE")){
-	                if(item.contains("CROSS")){
-	                    continue;
-	                }else if(item.contains(null)){
-	                    continue;
-	                }else{
-	                	storedItem.add(item.get(0));
-	                }
-	            }
-	        }
+	            for(int j=0;j<n; j++){
+	            	if(j == 0) {
+		                item.add(moves[i][j]);
+		                count = 1;
+		                
+	            	}
+	            	else if(item.get(j-1).equals(moves[i][j])) {
+	            		
+	            		item.add(moves[i][j]);
+	            		count++;
+	            		if(count>=3) {
+		                	storedItem.add(item.get(j));
+		                	System.out.println(storedItem.get(0));
+		                	break;
+	            		}
+	            	}else {
+	            		item.add(moves[i][j]);
+	            		count = 1;
+	            	}
+	                
+	             }
+            }
 	        
 	    	if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
 				return null;

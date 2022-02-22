@@ -40,7 +40,6 @@ public class TicTacToeController {
 		}
 		
 		int commands = game.getNumberOfCommands(board);
-		
 		try {
 			
 			result = resultService.resultOfTheGame(board, n);
