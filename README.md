@@ -3,7 +3,7 @@
 **API:** 
 
 	* POST/gameWinner
-	* calculates the 2D array sent from the front end to the API body and finds the match result. 
+	* calculates a chunk of commands sent from the front end to the API body and finds the match result. 
 	
 **Endpoints:**
 
