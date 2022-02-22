@@ -169,7 +169,6 @@ public class TicTacToeService implements TicTacToeInterface{
 
 		try {
 			for (int i = 0; i<n; i++){
-	            //item.add(moves[i][n-i-1]);
 	            
 	            if(i == 0) {
 	                item.add(moves[i][n-i-1]);

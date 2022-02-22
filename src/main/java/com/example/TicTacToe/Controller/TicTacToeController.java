@@ -29,25 +29,25 @@ public class TicTacToeController {
 		GameResult matchResult = new GameResult();
 		int n = game.getSize();
 		String result = "";
-		
 		if(n == 0) {
 			n = 3;
 		}
-		
 		String[][] board = new String[n][n];
-		for(int i=0;i<game.getMoves().length;i = i+3) {
-			board[(int) game.getMoves()[i+1]][(int) game.getMoves()[i+2]] = (String) game.getMoves()[i];
-		}
 		
-		int commands = game.getNumberOfCommands(board);
 		try {
+			
+			for(int i=0;i<game.getMoves().length;i = i+3) {
+				board[(int) game.getMoves()[i+1]][(int) game.getMoves()[i+2]] = (String) game.getMoves()[i];
+			}
+			
+			int commands = game.getNumberOfCommands(board);
 			
 			result = resultService.resultOfTheGame(board, n);
 			
-			if(commands<(n+n-1)) {
+			if(commands<5) { // for matching whole row or column formula (n+n-1)
 				matchResult.setMessage("Match in progress");
 				return new ResponseEntity<>(matchResult,HttpStatus.OK);
-			}else if(commands >= n+n-1 && commands < n*n) {
+			}else if(commands >= 5 && commands < n*n) {
 				if(result == null) {
 					matchResult.setMessage("Match in progress");
 					return new ResponseEntity<>(matchResult, HttpStatus.OK);
