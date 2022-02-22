@@ -25,7 +25,9 @@ public class GameResultCalculationService {
 		
 		try {
 			winnerByRow = gameService.winnerOfTheGameByRow(moves,n);
-
+			
+			LOGGER.info("Result found by checking the rows {}", winnerByRow);
+			
 			if(winnerByRow != null) {
 				winningMoves.add(winnerByRow);
 			}if(winnerByRow == "DRAW"){
@@ -33,6 +35,8 @@ public class GameResultCalculationService {
 			}
 			
 			winnerByColumn = gameService.winnerOfTheGameByColumn(moves,n);
+
+			LOGGER.info("Result found by checking the column {}", winnerByColumn);
 
 			if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
 				return "Duplicate";
@@ -46,6 +50,9 @@ public class GameResultCalculationService {
 			}
 			
 			winnerByLeftDiagonal = gameService.winnerOfTheGameByLeftDiagonal(moves,n);
+			
+			LOGGER.info("Result found by checking the left diagonal {}", winnerByLeftDiagonal);
+
 
 			if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
 				return "Duplicate";
@@ -59,6 +66,9 @@ public class GameResultCalculationService {
 			}
 			
 			winnerByRightDiagonal = gameService.winnerOfTheGameByRightDiagonal(moves,n);
+			
+			LOGGER.info("Result found by checking the right diagonal {}", winnerByRightDiagonal);
+
 			
 			if(!winningMoves.isEmpty() && winnerByRightDiagonal != null && !winningMoves.contains(winnerByRightDiagonal)) {
 				return "Duplicate";

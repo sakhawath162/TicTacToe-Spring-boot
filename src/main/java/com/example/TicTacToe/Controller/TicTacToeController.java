@@ -56,13 +56,16 @@ public class TicTacToeController {
 			LOGGER.info("Result found {}", result);
 			
 			if(result == null || result == "DRAW") {
+				LOGGER.info("THE GAME IS DRAW");
 				matchResult.setMessage("Draw");
 				return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			}else if(result.equals("Duplicate")) {
+				LOGGER.info("DUPLICATE WINNERS FOUND");
 				matchResult.setMessage("Duplicate winners!");
 				return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			}
 			
+			LOGGER.info("Game winner : {}", result);
 			matchResult.setMessage(result + " wins!");
 			return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			
