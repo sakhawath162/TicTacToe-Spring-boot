@@ -14,11 +14,20 @@
 
 ```javascript
 	{
-	    "size" : 3,
-	    "moves": [["CIRCLE",null,"CIRCLE"],
-	              [null,"CROSS","CROSS"],
-	              ["CROSS",null,null]]
-	}
+    "size" : 5,
+    "moves": ["CROSS",0,0,
+              "CIRCLE",0,1,
+              "CROSS",0,2,
+              "CROSS",1,0,
+              "CROSS",1,1,
+              "CIRCLE",1,2,
+              "CIRCLE",1,3,
+              "CROSS",2,0,
+              "CIRCLE",3,1,
+              "CIRCLE",3,2,
+              "CROSS",3,3
+              ]
+	 }
 ```
 
 **Responses**
@@ -36,6 +45,6 @@ the moves and the row and column number will be inserted in an array. for exampl
 
 **Deployment**
 the project is deployed to heroku. 
-project link : [a link](https://tictactoe-spring-boot.herokuapp.com/)
+project link : [tictactoe-spring-boot](https://tictactoe-spring-boot.herokuapp.com/)
 	
 	
