@@ -3,7 +3,7 @@ package com.example.TicTacToe.Dao;
 public class Game {
 	
 	private int size;
-	private String[][] moves;
+	private Object[] moves;
 
 	public int getSize() {
 		return size;
@@ -13,11 +13,11 @@ public class Game {
 		this.size = size;
 	}
 
-	public String[][] getMoves() {
+	public Object[] getMoves() {
 		return moves;
 	}
 
-	public void setMoves(String[][] moves) {
+	public void setMoves(Object[] moves) {
 		this.moves = moves;
 	}
 	

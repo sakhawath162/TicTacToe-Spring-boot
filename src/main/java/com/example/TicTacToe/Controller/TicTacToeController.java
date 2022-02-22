@@ -29,15 +29,21 @@ public class TicTacToeController {
 		GameResult matchResult = new GameResult();
 		int n = game.getSize();
 		String result = "";
-		int commands = game.getNumberOfCommands(game.getMoves());
+		
+		if(n == 0) {
+			n = 3;
+		}
+		
+		String[][] board = new String[n][n];
+		for(int i=0;i<game.getMoves().length;i = i+3) {
+			board[(int) game.getMoves()[i+1]][(int) game.getMoves()[i+2]] = (String) game.getMoves()[i];
+		}
+		
+		int commands = game.getNumberOfCommands(board);
 		
 		try {
 			
-			if(n == 0) {
-				n = 3;
-			}
-			
-			result = resultService.resultOfTheGame(game.getMoves(), n);
+			result = resultService.resultOfTheGame(board, n);
 			
 			if(commands<(n+n-1)) {
 				matchResult.setMessage("Match in progress");
@@ -57,6 +63,7 @@ public class TicTacToeController {
 				matchResult.setMessage("Duplicate winners!");
 				return new ResponseEntity<>(matchResult, HttpStatus.EXPECTATION_FAILED);
 			}
+			
 			matchResult.setMessage(result + " wins!");
 			return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			
