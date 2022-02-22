@@ -24,18 +24,18 @@ public class TicTacToeService implements TicTacToeInterface{
 	            item.clear();
 	            
 	            for(int j=0;j<n; j++){
+
 	            	if(j == 0) {
 		                item.add(moves[i][j]);
 		                count = 1;
-		                
+
 	            	}
-	            	else if(item.get(j-1).equals(moves[i][j])) {
+	            	else if(item.get(j-1) != null &&  moves[i][j] != null && item.get(j-1).equals(moves[i][j]) ) {
 	            		
 	            		item.add(moves[i][j]);
 	            		count++;
 	            		if(count>=3) {
 		                	storedItem.add(item.get(j));
-		                	System.out.println(storedItem.get(0));
 		                	break;
 	            		}
 	            	}else {
@@ -47,7 +47,7 @@ public class TicTacToeService implements TicTacToeInterface{
             }
 	        
 	    	if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return null;
+				return "DRAW";
 			}
 	    	if(storedItem.isEmpty()) {
 	    		return null;
@@ -59,14 +59,13 @@ public class TicTacToeService implements TicTacToeInterface{
 
 			throw e;
 		}
-
-
 	}
 
 	@Override
 	public String winnerOfTheGameByColumn(String[][] moves, int n) throws Exception {
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
+		int count = 0;
 		LOGGER.info("Checking winner by column");
 
 		try {
@@ -75,30 +74,29 @@ public class TicTacToeService implements TicTacToeInterface{
 	            item.clear();
 	            
 	            for(int j=0;j<n;j++){
-	                item.add(moves[j][i]);
-	            }
-	            
-	            if(item.contains("CROSS")){
-	                if(item.contains("CIRCLE")){
-	                    continue;
-	                }else if(item.contains(null)){
-	                    continue;
-	                }else{
-	                	storedItem.add(item.get(0));
-	                }
-	            }else if(item.contains("CIRCLE")){
-	                if(item.contains("CROSS")){
-	                    continue;
-	                }else if(item.contains(null)){
-	                    continue;
-	                }else{
-	                	storedItem.add(item.get(0));
-	                }
+	            	
+	            	if(j == 0) {
+		                item.add(moves[j][i]);
+		                count = 1;
+
+	            	}
+	            	else if(item.get(j-1) != null &&  moves[j][i] != null && item.get(j-1).equals(moves[j][i]) ) {
+	            		
+	            		item.add(moves[j][i]);
+	            		count++;
+	            		if(count>=3) {
+		                	storedItem.add(item.get(j));
+		                	break;
+	            		}
+	            	}else {
+	            		item.add(moves[j][i]);
+	            		count = 1;
+	            	}
 	            }
 	        }
 				
 			if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return null;
+				return "DRAW";
 			}
 			
 			if(storedItem.isEmpty()) {
@@ -109,7 +107,6 @@ public class TicTacToeService implements TicTacToeInterface{
 		     
 		}catch(Exception e) {
 			LOGGER.error("Exception thrown {}", e);
-
 			throw e;
 		}
 			
@@ -120,28 +117,32 @@ public class TicTacToeService implements TicTacToeInterface{
 		
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
-
+		int count = 0;
 		LOGGER.info("Checking winner by left diagonal");
 
 		try {
 			for(int i = 0; i<n ; i++){
-	            item.add(moves[i][i]);
-	        }
-			
-	        if(!item.contains("CROSS")){
-	            if(item.contains("CIRCLE")){
-	                if(!item.contains(null)){
-	                	storedItem.add(item.get(0));
-	                }
-	            }
-	        }else if(!item.contains("CIRCLE")){
-	            if(!item.contains(null)){
-                	storedItem.add(item.get(0));
-	            }
-	        }
+	            
+	            if(i == 0) {
+	                item.add(moves[i][i]);
+	                count = 1;
+            	}
+            	else if(item.get(i-1) != null &&  moves[i][i] != null && item.get(i-1).equals(moves[i][i]) ) {
+
+            		item.add(moves[i][i]);
+            		count++;
+            		if(count>=3) {
+	                	storedItem.add(item.get(i));
+	                	break;
+            		}
+            	}else {
+            		item.add(moves[i][i]);
+            		count = 1;
+            	}
+			}
 	        
 	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return null;
+				return "DRAW";
 			}
 	        
 	        if(storedItem.isEmpty()) {
@@ -162,28 +163,35 @@ public class TicTacToeService implements TicTacToeInterface{
 	public String winnerOfTheGameByRightDiagonal(String[][] moves, int n) throws Exception {
 		List<String> item = new ArrayList<>();
 		List<String> storedItem = new ArrayList<>();
-
+		int count = 0;
+		
 		LOGGER.info("Checking winner by Right diagonal");
 
 		try {
 			for (int i = 0; i<n; i++){
-	            item.add(moves[i][n-i-1]);
-	        }
-			
-	        if(!item.contains("CROSS")){
-	            if(item.contains("CIRCLE")){
-	                if(!item.contains(null)){
-	                	storedItem.add(item.get(0));
-	                }
-	            }
-	        }else if(!item.contains("CIRCLE")){
-	            if(!item.contains(null)){
-                	storedItem.add(item.get(0));
-	            }
+	            //item.add(moves[i][n-i-1]);
+	            
+	            if(i == 0) {
+	                item.add(moves[i][n-i-1]);
+	                count = 1;
+            	}
+            	else if(item.get(i-1) != null &&  moves[i][n-i-1] != null && item.get(i-1).equals(moves[i][n-i-1]) ) {
+
+            		item.add(moves[i][n-i-1]);
+            		count++;
+            		if(count>=3) {
+	                	storedItem.add(item.get(i));
+	                	break;
+            		}
+            	}else {
+            		item.add(moves[i][n-i-1]);
+            		count = 1;
+            	}
+	            
 	        }
 	        
 	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return null;
+				return "DRAW";
 			}
 	        
 	        if(storedItem.isEmpty()) {

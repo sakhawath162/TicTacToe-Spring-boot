@@ -28,26 +28,34 @@ public class GameResultCalculationService {
 
 			if(winnerByRow != null) {
 				winningMoves.add(winnerByRow);
+			}if(winnerByRow == "DRAW"){
+				return winningMoves.toArray()[0].toString();
 			}
 			
 			winnerByColumn = gameService.winnerOfTheGameByColumn(moves,n);
-					
+
 			if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
 				return "Duplicate";
 			}
 			
 			if(winnerByColumn != null) {
 				winningMoves.add(winnerByColumn);
+			}	
+			if(winnerByColumn == "DRAW") {
+				return winningMoves.toArray()[0].toString();
 			}
 			
 			winnerByLeftDiagonal = gameService.winnerOfTheGameByLeftDiagonal(moves,n);
-			
+
 			if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
 				return "Duplicate";
 			}
 			
 			if(winnerByLeftDiagonal != null) {
 				winningMoves.add(winnerByLeftDiagonal);
+			}
+			if(winnerByLeftDiagonal == "DRAW") {
+				return winningMoves.toArray()[0].toString();
 			}
 			
 			winnerByRightDiagonal = gameService.winnerOfTheGameByRightDiagonal(moves,n);
@@ -58,6 +66,9 @@ public class GameResultCalculationService {
 			
 			if(winnerByRightDiagonal != null) {
 				winningMoves.add(winnerByRightDiagonal);
+			}
+			if(winnerByRightDiagonal == "DRAW") {
+				return winningMoves.toArray()[0].toString();
 			}
 
 			if(winningMoves.isEmpty()) {

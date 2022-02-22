@@ -55,12 +55,12 @@ public class TicTacToeController {
 			}
 			LOGGER.info("Result found {}", result);
 			
-			if(result == null) {
+			if(result == null || result == "DRAW") {
 				matchResult.setMessage("Draw");
 				return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			}else if(result.equals("Duplicate")) {
 				matchResult.setMessage("Duplicate winners!");
-				return new ResponseEntity<>(matchResult, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<>(matchResult, HttpStatus.OK);
 			}
 			
 			matchResult.setMessage(result + " wins!");
