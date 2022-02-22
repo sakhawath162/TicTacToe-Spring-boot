@@ -29,9 +29,13 @@
 	
 **FrontEnd**
 
-In the frontend there will be a 2D array of size N by N. When players gives any command (CROSS/CIRCLE)
-the respective field of the array will be filled up by that string. The rest will be the same. If any of
-the array field is empty it will be filled up by null. this array will be sent as a body to the single POST 
-API call to the backend. 
+In the frontend there is a input box for taking the grid size (3<=N<=12). According to the input a 
+N by N table will be generated. The moves will be given to the boxes(CROSS/CIRCLE). For every click 
+the moves and the row and column number will be inserted in an array. for example array = ["CROSS,0,1,"CIRCLE",0,0]
+"Check match result" button will hit the Backend post api with the array. Response will be shown accordingly. 
+
+**Deployment**
+the project is deployed to heroku. 
+project link : [a link](https://tictactoe-spring-boot.herokuapp.com/)
 	
 	
