@@ -1,8 +1,10 @@
-let moves = []
+let flags = []
 let turn = true
 
+
 const makeTable = (size) => {
-    moves = []
+    flags = []
+    moves=[]
     let row;
     let table = `<table>
     <tbody>`;
@@ -14,7 +16,7 @@ const makeTable = (size) => {
             row.push(null)
         }
         table += '</tr>'
-        moves.push(row)
+        flags.push(row)
     }
     table += `</tbody>
     </table>`;
@@ -25,15 +27,17 @@ const makeTable = (size) => {
 
 
 const playGame = (i, j) => {
-    if (moves[i][j] == null) {
+    if (flags[i][j] == null) {
         if (turn) {
-            moves[i][j] = "CROSS"
+            flags[i][j] = "CROSS"
+            moves.push("CROSS",i,j)
         } else {
-            moves[i][j] = "CIRCLE"
+            flags[i][j] = "CIRCLE"
+            moves.push("CIRCLE",i,j)
         }
         turn = !turn
 
-        document.getElementById(`row_${i}${j}`).innerHTML = moves[i][j]
+        document.getElementById(`row_${i}${j}`).innerHTML = flags[i][j]
         console.log(moves)
 
     }
