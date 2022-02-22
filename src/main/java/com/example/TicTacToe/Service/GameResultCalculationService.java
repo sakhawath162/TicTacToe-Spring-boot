@@ -30,56 +30,57 @@ public class GameResultCalculationService {
 			
 			if(winnerByRow != null) {
 				winningMoves.add(winnerByRow);
-			}if(winnerByRow == "DRAW"){
-				return winningMoves.toArray()[0].toString();
 			}
+//			if(winnerByRow == "DRAW"){
+//				return winningMoves.toArray()[0].toString();
+//			}
 			
 			winnerByColumn = gameService.winnerOfTheGameByColumn(moves,n);
 
 			LOGGER.info("Result found by checking the column {}", winnerByColumn);
 
-			if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
-				return "Duplicate";
-			}
+//			if(!winningMoves.isEmpty() && winnerByColumn != null && !winningMoves.contains(winnerByColumn)) {
+//				return "Duplicate";
+//			}
 			
 			if(winnerByColumn != null) {
 				winningMoves.add(winnerByColumn);
 			}	
-			if(winnerByColumn == "DRAW") {
-				return winningMoves.toArray()[0].toString();
-			}
+//			if(winnerByColumn == "DRAW") {
+//				return winningMoves.toArray()[0].toString();
+//			}
 			
 			winnerByLeftDiagonal = gameService.winnerOfTheGameByLeftDiagonal(moves,n);
 			
 			LOGGER.info("Result found by checking the left diagonal {}", winnerByLeftDiagonal);
 
 
-			if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
-				return "Duplicate";
-			}
+//			if(!winningMoves.isEmpty() && winnerByLeftDiagonal != null && !winningMoves.contains(winnerByLeftDiagonal)) {
+//				return "Duplicate";
+//			}
 			
 			if(winnerByLeftDiagonal != null) {
 				winningMoves.add(winnerByLeftDiagonal);
 			}
-			if(winnerByLeftDiagonal == "DRAW") {
-				return winningMoves.toArray()[0].toString();
-			}
-			
+//			if(winnerByLeftDiagonal == "DRAW") {
+//				return winningMoves.toArray()[0].toString();
+//			}
+//			
 			winnerByRightDiagonal = gameService.winnerOfTheGameByRightDiagonal(moves,n);
 			
 			LOGGER.info("Result found by checking the right diagonal {}", winnerByRightDiagonal);
 
 			
-			if(!winningMoves.isEmpty() && winnerByRightDiagonal != null && !winningMoves.contains(winnerByRightDiagonal)) {
-				return "Duplicate";
-			}
-			
+//			if(!winningMoves.isEmpty() && winnerByRightDiagonal != null && !winningMoves.contains(winnerByRightDiagonal)) {
+//				return "Duplicate";
+//			}
+//			
 			if(winnerByRightDiagonal != null) {
 				winningMoves.add(winnerByRightDiagonal);
 			}
-			if(winnerByRightDiagonal == "DRAW") {
-				return winningMoves.toArray()[0].toString();
-			}
+//			if(winnerByRightDiagonal == "DRAW") {
+//				return winningMoves.toArray()[0].toString();
+//			}
 
 			if(winningMoves.isEmpty()) {
 				return null;

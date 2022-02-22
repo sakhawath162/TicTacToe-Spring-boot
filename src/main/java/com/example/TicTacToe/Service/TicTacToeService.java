@@ -46,9 +46,9 @@ public class TicTacToeService implements TicTacToeInterface{
 	             }
             }
 	        
-	    	if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return "DRAW";
-			}
+//	    	if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+//				return "DRAW";
+//			}
 	    	if(storedItem.isEmpty()) {
 	    		return null;
 	    	}
@@ -95,9 +95,9 @@ public class TicTacToeService implements TicTacToeInterface{
 	            }
 	        }
 				
-			if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return "DRAW";
-			}
+//			if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+//				return "DRAW";
+//			}
 			
 			if(storedItem.isEmpty()) {
 	    		return null;
@@ -141,9 +141,9 @@ public class TicTacToeService implements TicTacToeInterface{
             	}
 			}
 	        
-	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return "DRAW";
-			}
+//	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+//				return "DRAW";
+//			}
 	        
 	        if(storedItem.isEmpty()) {
 	    		return null;
@@ -189,9 +189,9 @@ public class TicTacToeService implements TicTacToeInterface{
 	            
 	        }
 	        
-	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
-				return "DRAW";
-			}
+//	        if(storedItem.contains("CIRCLE") && storedItem.contains("CROSS")) {
+//				return "DRAW";
+//			}
 	        
 	        if(storedItem.isEmpty()) {
 	    		return null;

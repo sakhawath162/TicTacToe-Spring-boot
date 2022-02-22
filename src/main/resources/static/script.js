@@ -74,7 +74,9 @@ const submitToServer = () => {
 
 document.getElementById("grid_size_btn").addEventListener("click", () => {
     const grid_size = document.getElementById("grid_size").value
-    if (grid_size >= 3) {
+    if (grid_size >= 3 && grid_size<=12) {
         makeTable(grid_size)
+    }else{
+    	document.getElementById("message").innerHTML="Invalid Grid Size"
     }
 });
