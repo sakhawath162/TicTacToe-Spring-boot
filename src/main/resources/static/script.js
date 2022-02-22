@@ -53,7 +53,7 @@ const submitToServer = () => {
             data.size = grid_size
         }
         data.moves = moves
-        fetch('http://localhost:8081/api/ticTacToe/gameWinner', {
+        fetch('https://tictactoe-spring-boot.herokuapp.com/api/ticTacToe/gameWinner', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
